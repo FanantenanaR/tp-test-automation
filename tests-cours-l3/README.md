@@ -5,8 +5,8 @@ Support pratique d'un cours L3 d'introduction aux tests automatisés (4 h). Fil 
 ## Organisation
 
 - `unit/` — tests unitaires (Vitest) : isoler une unité de code
-- `integration/` — tests d'intégration (à venir)
-- `e2e/` — tests end-to-end (à venir)
+- `integration/` — tests d'intégration (Vitest + Supertest + SQLite en mémoire) : collaboration entre composants
+- `e2e/` — tests end-to-end (Playwright) : parcours utilisateur dans un vrai navigateur
 
 ## Format des TPs
 
@@ -26,4 +26,10 @@ npm run test:tp1
 
 ## État actuel
 
-Seul `unit/` est implémenté. Les sections `integration/` et `e2e/` seront ajoutées lors d'itérations ultérieures.
+Les trois sections (`unit/`, `integration/`, `e2e/`) sont scaffoldées. Chaque section a son propre `package.json` et son propre `npm install`.
+
+```bash
+cd unit && npm install         # Vitest
+cd ../integration && npm install   # Vitest + Supertest + SQLite
+cd ../e2e && npm install && npm run install:browsers  # Playwright + Chromium
+```

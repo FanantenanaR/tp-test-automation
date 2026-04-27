@@ -1,0 +1,17 @@
+{
+  "name": "tests-cours-l3-e2e",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:tp1": "playwright test --config=tp1-demo/playwright.config.ts",
+    "test:tp2": "playwright test --config=tp2-ensemble/playwright.config.ts",
+    "test:tp3": "playwright test --config=tp3-cas-reel/playwright.config.ts",
+    "install:browsers": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

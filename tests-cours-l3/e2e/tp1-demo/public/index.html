@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Boutique — Catalogue</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 1rem; }
+  article { border: 1px solid #ddd; padding: .8rem; margin: .5rem 0; border-radius: 6px; }
+  .indispo { opacity: .5; }
+  .prix { font-weight: bold; }
+</style>
+</head>
+<body>
+  <header><h1>Boutique en ligne</h1></header>
+
+  <main>
+    <h2>Catalogue</h2>
+
+    <article aria-label="Livre">
+      <h3>Livre — Le testeur en herbe</h3>
+      <p class="prix">15,00 €</p>
+      <p>En stock</p>
+    </article>
+
+    <article aria-label="Stylo">
+      <h3>Stylo plume</h3>
+      <p class="prix">25,00 €</p>
+      <p>En stock</p>
+    </article>
+
+    <article aria-label="Cahier" class="indispo">
+      <h3>Cahier rouge</h3>
+      <p class="prix">5,00 €</p>
+      <p>Indisponible</p>
+    </article>
+  </main>
+</body>
+</html>

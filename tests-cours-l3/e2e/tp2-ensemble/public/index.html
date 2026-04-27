@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Boutique — Catalogue + Panier</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 1rem; }
+  article { border: 1px solid #ddd; padding: .8rem; margin: .5rem 0; border-radius: 6px; }
+  .panier { border: 2px solid #444; padding: 1rem; margin-top: 2rem; border-radius: 6px; }
+  button { cursor: pointer; }
+</style>
+</head>
+<body>
+  <h1>Boutique en ligne</h1>
+
+  <h2>Catalogue</h2>
+  <article aria-label="Livre" data-id="livre" data-prix="15">
+    <h3>Livre — Le testeur en herbe</h3>
+    <p class="prix">15,00 €</p>
+    <button class="ajouter">Ajouter au panier</button>
+  </article>
+
+  <article aria-label="Stylo" data-id="stylo" data-prix="25">
+    <h3>Stylo plume</h3>
+    <p class="prix">25,00 €</p>
+    <button class="ajouter">Ajouter au panier</button>
+  </article>
+
+  <article aria-label="Mug" data-id="mug" data-prix="12">
+    <h3>Mug en céramique</h3>
+    <p class="prix">12,00 €</p>
+    <button class="ajouter">Ajouter au panier</button>
+  </article>
+
+  <section class="panier" aria-label="Panier">
+    <h2>Panier (<span data-test="nb-articles">0</span>)</h2>
+    <ul data-test="lignes"></ul>
+    <p>Total : <strong data-test="total">0,00 €</strong></p>
+    <button data-test="vider">Vider le panier</button>
+  </section>
+
+<script>
+  const lignes = [];
+  const ul = document.querySelector('[data-test=lignes]');
+  const totalSpan = document.querySelector('[data-test=total]');
+  const nbSpan = document.querySelector('[data-test=nb-articles]');
+
+  function rafraichir() {
+    ul.innerHTML = '';
+    for (const l of lignes) {
+      const li = document.createElement('li');
+      li.textContent = `${l.nom} — ${l.prix.toFixed(2)} €`;
+      ul.appendChild(li);
+    }
+    const total = lignes.reduce((s, l) => s + l.prix, 0);
+    totalSpan.textContent = `${total.toFixed(2).replace('.', ',')} €`;
+    nbSpan.textContent = String(lignes.length);
+  }
+
+  for (const btn of document.querySelectorAll('.ajouter')) {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('article');
+      lignes.push({
+        id: card.dataset.id,
+        nom: card.querySelector('h3').textContent,
+        prix: Number(card.dataset.prix),
+      });
+      rafraichir();
+    });
+  }
+
+  document.querySelector('[data-test=vider]').addEventListener('click', () => {
+    lignes.length = 0;
+    rafraichir();
+  });
+</script>
+</body>
+</html>

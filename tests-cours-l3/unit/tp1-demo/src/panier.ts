@@ -6,44 +6,32 @@ interface LignePanier {
 }
 
 export class Panier {
-  private lignes: LignePanier[] = [];
+  lignes: LignePanier[] = [];
 
   ajouter(produit: Produit, quantite: number): void {
-    if (quantite <= 0) {
-      throw new Error('La quantité doit être strictement positive');
-    }
-    const existante = this.lignes.find((l) => l.produit.id === produit.id);
-    if (existante) {
-      existante.quantite += quantite;
-    } else {
-      this.lignes.push({ produit, quantite });
-    }
+    //ajout de produit
   }
 
   retirer(produitId: string): void {
-    this.lignes = this.lignes.filter((l) => l.produit.id !== produitId);
+    // retirer un produit du panier
   }
 
   modifierQuantite(produitId: string, quantite: number): void {
-    if (quantite <= 0) {
-      throw new Error('La quantité doit être strictement positive');
-    }
-    const ligne = this.lignes.find((l) => l.produit.id === produitId);
-    if (!ligne) {
-      throw new Error('Produit absent du panier');
-    }
-    ligne.quantite = quantite;
+    // modifier la quantité d'un produit dans le panier
   }
 
   total(): number {
-    return this.lignes.reduce((s, l) => s + l.produit.prix * l.quantite, 0);
+    // calculer le total du panier
+    return -1;
   }
 
   nombreArticles(): number {
-    return this.lignes.reduce((n, l) => n + l.quantite, 0);
+    // calculer le nombre d'articles dans le panier
+    return -1;
   }
 
   estVide(): boolean {
+    // vérifier si le panier est vide
     return this.lignes.length === 0;
   }
 }
